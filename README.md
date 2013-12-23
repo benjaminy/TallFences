@@ -15,15 +15,20 @@ doing parallel programming for decades.
 ### Tall Fences in 100 words.
 
 Tall Fences is very closely related to existing task parallel libraries
-(TPL, PPL, GCD, TBB, Cilk, Java fork/join, etc.).  Tall Fences' novel
-feature is that the workers are processes instead of threads.  The
-primary advantage of processes is that the workers' memory is isolated
-by default (windows of shared memory can be created when necessary).
-Memory isolation makes avoidance of concurrency bugs much easier.  The
-primary disadvantage of processes is that integrating parallelism into
-an existing project requires more programmer effort.  For example, a
-non-trivial amount of application-specific worker initialization and
-finalization logic needs to be written.
+([TPL](http://msdn.microsoft.com/en-us/library/dd460717(v=vs.110).aspx),
+[PPL](http://msdn.microsoft.com/en-us/library/dd492418.aspx),
+[GCD](http://en.wikipedia.org/wiki/Grand_Central_Dispatch),
+[TBB](https://www.threadingbuildingblocks.org/),
+[Cilk](http://software.intel.com/en-us/intel-cilk-plus), [Java
+fork/join](http://coopsoft.com/ar/CalamityArticle.html), etc.).  Tall
+Fences' novel feature is that the workers are processes instead of
+threads.  The primary advantage of processes is that the workers' memory
+is isolated by default (windows of shared memory can be created when
+necessary).  Memory isolation makes avoidance of concurrency bugs much
+easier.  The primary disadvantage of processes is that integrating
+parallelism into an existing project requires more programmer effort.
+For example, a non-trivial amount of application-specific worker
+initialization and finalization logic needs to be written.
 
 ## A bit more detail
 
