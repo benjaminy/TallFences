@@ -21,14 +21,22 @@ Tall Fences is very closely related to existing task parallel libraries
 [TBB](https://www.threadingbuildingblocks.org/),
 [Cilk](http://software.intel.com/en-us/intel-cilk-plus), [Java
 fork/join](http://coopsoft.com/ar/CalamityArticle.html), etc.).  Tall
-Fences' novel feature is that the workers are processes instead of
-threads.  The primary advantage of processes is that the workers' memory
-is isolated by default (windows of shared memory can be created when
-necessary).  Memory isolation makes avoidance of concurrency bugs much
-easier.  The primary disadvantage of processes is that integrating
-parallelism into an existing project requires more programmer effort.
-For example, a non-trivial amount of application-specific worker
-initialization and finalization logic needs to be written.
+Fences' novel feature is that the workers are processes (isolated
+memory) instead of threads (shared memory).  This is an interesting
+distinction because resource sharing is at the root of all concurrency
+bugs.  Making memory isolation between workers the default (shared
+memory segments can be created when necessary) should make it easier for
+regular developers to add parallelism to their applications without
+creating a mess of data races, deadlocks, atomicity violations, etc.
+
+Isolating the workers does come at some cost.  There are overheads to
+consider (these are often overblown, but they do exist and are discussed
+below).  More importantly in most cases, adding parallelism with
+isolated processes requires more changes to application code that with a
+thread-based framework.  My hypothesis is that for a great many
+applications&mdash;especially those where reliability and robustness are
+generally higher priorities than raw performance&mdash;this tradeoff is
+well worth the trouble.
 
 ## A bit more detail
 
@@ -219,7 +227,7 @@ Also we'll need to handle unexpected termination of workers reasonably
 gracefully.
 
 Also there will need to be an API for creating and using shared memory
-windows.
+segments.
 
 ### Fancy queue implementation
 
