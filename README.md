@@ -15,7 +15,7 @@ doing parallel programming for decades.
 ### Tall Fences in 100 words.
 
 Tall Fences is very closely related to existing task parallel libraries
-([TPL](http://msdn.microsoft.com/en-us/library/dd460717(v=vs.110).aspx),
+([TPL](http://msdn.microsoft.com/en-us/library/dd460717.aspx),
 [PPL](http://msdn.microsoft.com/en-us/library/dd492418.aspx),
 [GCD](http://en.wikipedia.org/wiki/Grand_Central_Dispatch),
 [TBB](https://www.threadingbuildingblocks.org/),
